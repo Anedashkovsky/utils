@@ -40,13 +40,12 @@ class ExcludeBuilder {
      */
     private getDirectories_(pathToProject: string): Array<string> {
         let nodeModulesPath = path.resolve(pathToProject, NODE_MODULES);
-        console.log(nodeModulesPath);
-        
+
         return fs.readdirSync(nodeModulesPath);
     }
 
     /**
-     * Filter directories and return list of directories without includedModules 
+     * Filter directories and return list of directories without includedModules
      * @param {Array<string>} directories
      * @return {Array<string>}
      */
@@ -80,7 +79,7 @@ class ExcludeBuilder {
 
 
     /**
-     * Write given exludes to file 
+     * Write given exludes to file
      * @param {Array<string>} excludes
      * @private
      */
@@ -88,7 +87,7 @@ class ExcludeBuilder {
         let actualFileName = fileName ? fileName : DEAFULT_FILE_NAME;
         let filePath = path.resolve(__dirname, '..', actualFileName);
         this.checkIfFileExists_(filePath);
-        
+
         fs.writeFileSync(filePath, JSON.stringify(excludes, null, 4));
     }
 
@@ -99,8 +98,6 @@ class ExcludeBuilder {
      * @private
      */
     private checkIfFileExists_(fileName: string) {
-        console.log(fileName);
-        
         fs.closeSync(fs.openSync(fileName, 'w'));
     }
 }
